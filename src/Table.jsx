@@ -1,82 +1,8 @@
 import React, { useState } from "react";
 
 const Table = ({ userShow, handleAdminChange, handleClean }) => {
-  // const userShow = {
-  //   id: 0,
-  //   username: "Hao",
-  //   schedule: {
-  //     "2023-9-5": [
-  //       {
-  //         checkIn: "8:55",
-  //         checkOut: "12:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //       {
-  //         checkIn: "12:10",
-  //         checkOut: "17:04",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-6": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-7": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-8": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-11": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-12": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-13": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-14": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //     "2023-9-15": [
-  //       {
-  //         checkIn: "9:05",
-  //         checkOut: "17:05",
-  //         checkedIn: false, // Add this property
-  //       },
-  //     ],
-  //   },
-  // };
   const [payCheck, setPayCheck] = useState("");
-  const [visible, setVisible] = useState(true);
+  const [paycheckVisible, setPaycheckVisible] = useState(true);
   const [admin, setAdmin] = useState(false);
   const [adminChange, setAdminChange] = useState({
     id: "",
@@ -96,7 +22,7 @@ const Table = ({ userShow, handleAdminChange, handleClean }) => {
 
   const handleVisible = (e) => {
     e.preventDefault();
-    setVisible(!visible);
+    setPaycheckVisible(!paycheckVisible);
   };
 
   const handleAdminChangePlus = (e) => {
@@ -200,7 +126,7 @@ const Table = ({ userShow, handleAdminChange, handleClean }) => {
             </h3>
             <h3>
               Total Paycheck: $
-              {!visible ? (
+              {!paycheckVisible ? (
                 <span>{payCheck}</span>
               ) : (
                 <form
@@ -226,7 +152,12 @@ const Table = ({ userShow, handleAdminChange, handleClean }) => {
             <button
               onClick={() => {
                 window.print();
-                handleClean();
+                const result = confirm("您需要清理数据吗？");
+                if (result) {
+                  handleClean();
+                } else {
+                  alert("你选择了取消");
+                }
               }}
             >
               Print
@@ -304,3 +235,78 @@ const Table = ({ userShow, handleAdminChange, handleClean }) => {
 };
 
 export default Table;
+
+// const userShow = {
+//   id: 0,
+//   username: "Hao",
+//   schedule: {
+//     "2023-9-5": [
+//       {
+//         checkIn: "8:55",
+//         checkOut: "12:05",
+//         checkedIn: false, // Add this property
+//       },
+//       {
+//         checkIn: "12:10",
+//         checkOut: "17:04",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-6": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-7": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-8": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-11": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-12": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-13": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-14": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//     "2023-9-15": [
+//       {
+//         checkIn: "9:05",
+//         checkOut: "17:05",
+//         checkedIn: false, // Add this property
+//       },
+//     ],
+//   },
+// };

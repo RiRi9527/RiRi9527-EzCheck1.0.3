@@ -12,7 +12,6 @@ const App = () => {
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (savedData) setData(savedData);
-    console.log(savedData);
   }, []);
 
   useEffect(() => {
@@ -22,7 +21,14 @@ const App = () => {
   const [userData, setUserData] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    navigate("/");
+  }, []);
+
+  //Go back the home page when website refresh
+
   const userShow = data.find((user) => user.username === userData);
+  // should I use useMemo hook here for userShow? //No need to
 
   const handleSignUp = (username) => {
     // 检查是否存在相同的用户名
